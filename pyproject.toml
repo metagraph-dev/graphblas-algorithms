@@ -61,9 +61,14 @@ dependencies = [
     "python-graphblas >=2023.1.0",
 ]
 
+# nx < 3.2
 [project.entry-points."networkx.plugins"]
 graphblas = "graphblas_algorithms.interface:Dispatcher"
 
+[project.entry-points."networkx.plugins_info"]
+graphblas = "_nx_graphblas:get_info"
+
+# nx >= 3.2
 [project.entry-points."networkx.backends"]
 graphblas = "graphblas_algorithms.interface:Dispatcher"
 
@@ -202,6 +207,10 @@ ignore = [
     "PLE0605",  # Invalid format for `__all__`, must be `tuple` or `list` (Note: broken in v0.0.237)
 
     # Maybe consider
+    "E721",  # Use `is` and `is not` for type comparisons, or `isinstance()` for isinstance checks
+    "FURB177",  # Prefer `Path.cwd()` over `Path().resolve()` for current-directory lookups
+    "S113",  # Probable use of requests call without timeout
+    "SIM103",  # Return the condition `bool(mask.reduce(monoid.lor))` directly
     # "SIM300",  # Yoda conditions are discouraged, use ... instead (Note: we're not this picky)
     # "SIM401",  # Use dict.get ... instead of if-else-block (Note: if-else better for coverage and sometimes clearer)
     # "TRY004",  # Prefer `TypeError` exception for invalid type (Note: good advice, but not worth the nuisance)
@@ -271,5 +280,5 @@ builtins-ignorelist = ["copyright"]
 fixture-parentheses = false
 mark-parentheses = false
 
-[tool.lint.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "numpy"

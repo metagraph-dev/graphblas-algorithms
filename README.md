@@ -91,7 +91,7 @@ T5 = nx.k_truss(G2, 5)
 ```
 
 `G2` is not a `nx.Graph`, but it does have an attribute
-`__networkx_plugin__ = "graphblas"`. This tells NetworkX to
+`__networkx_backend__ = "graphblas"`. This tells NetworkX to
 dispatch the k_truss call to graphblas-algorithms. This link
 connection exists because graphblas-algorithms registers
 itself as a "networkx.plugin" entry point.
